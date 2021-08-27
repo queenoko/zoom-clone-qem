@@ -22,22 +22,11 @@ navigator.mediaDevices.getUserMedia({
 
     peer.on('call', call => {
       call.answer(stream)
-      const myVideo = document.createElement('video')
+      const video = document.createElement('video')
       call.on('stream', userVideoStream => {
         addVideoStream(video, userVideoStream)
       })
     })
-
-    // peer.on('call', function(call) {
-    //   //getUserMedia({video: true, audio: true}, function(stream) {
-    //     call.answer(stream); // Answer the call with an A/V stream.
-    //     call.on('stream', function(userVideoStream) {
-    //       // Show stream in some video/canvas element.
-    //     });
-    //   }, function(err) {
-    //     console.log('Failed to get local stream' ,err);
-    //   });
-    // });
 
     socket.on('user-connected', (userId) => {
       connectToNewUser(userId, stream)
